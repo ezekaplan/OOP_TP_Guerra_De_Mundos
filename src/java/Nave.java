@@ -1,4 +1,4 @@
-package java.entities;
+package java;
 
 /**
  * Created by ekapl1 on 5/10/17.

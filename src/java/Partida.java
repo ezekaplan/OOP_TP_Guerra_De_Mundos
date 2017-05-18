@@ -1,4 +1,4 @@
-package java.entities;
+package java;
 
 import java.util.*;
 
@@ -35,10 +35,6 @@ public class Partida {
         int cantPlanetasChicos = cantPlanetas * PLANETAS_CHICOS / 100;
 
 
-
-
-
-
     }
 
     private void crearPlanetas(int cantPlanetasGrandes, int cantPlaetasMedianos, int cantPlanetasChicos) {
@@ -54,7 +50,7 @@ public class Partida {
 
 
     private void distribuirPlanetas() {
-        int x = rnd();
+
     }
 
     public class Espacio {
