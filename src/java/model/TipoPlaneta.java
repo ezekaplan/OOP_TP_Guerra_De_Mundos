@@ -1,8 +1,5 @@
-package java;
+package java.model;
 
-/**
- * Created by ekapl1 on 5/10/17.
- */
 public enum TipoPlaneta {
 
     CHICO(200, 10, 2),
@@ -10,17 +7,17 @@ public enum TipoPlaneta {
     GRANDE(1000, 2, 10);
 
     private int capacidadPoblacion;
-    private int velocidadCrecimiento;
+    private int velocidadCrecimientoPob;
     private int capacidadProduccion;
 
-    TipoPlaneta(int capacidadPoblacion, int velocidadCrecimiento, int capacidadProduccion) {
+    TipoPlaneta(int capacidadPoblacion, int velocidadCrecimientoPob, int capacidadProduccion) {
         this.capacidadPoblacion = capacidadPoblacion;
-        this.velocidadCrecimiento = velocidadCrecimiento;
+        this.velocidadCrecimientoPob = velocidadCrecimientoPob;
         this.capacidadProduccion = capacidadProduccion;
     }
 
-    public int getVelocidadCrecimiento() {
-        return velocidadCrecimiento;
+    public int getVelocidadCrecimientoPob() {
+        return velocidadCrecimientoPob;
     }
 
     public int getCapacidadProduccion() {
