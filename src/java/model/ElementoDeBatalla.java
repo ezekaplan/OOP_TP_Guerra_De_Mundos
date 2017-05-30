@@ -1,8 +1,5 @@
 package java.model;
 
-import java.exception.ConstruccionEnCursoException;
-import java.model.planeta.Planeta;
-
 public abstract class ElementoDeBatalla extends ElementoDeJuego {
 
     protected int nivel = 1;

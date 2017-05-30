@@ -1,5 +1,6 @@
 package java.model.planeta;
 
+import java.model.ConstruccionElementoBatalla;
 import java.model.ElementoDeBatalla;
 import java.model.ElementoDeJuego;
 import java.model.Jugador;
@@ -22,6 +23,7 @@ public class Planeta extends ElementoDeJuego implements Dañable, IObservador<El
     private List<Nave> naves = new ArrayList<>();
     private List<Flota> flotas = new ArrayList<>();
     private List<Torreta> torretas = new ArrayList<>();
+    private List<ConstruccionElementoBatalla> elementoConstruccion = new ArrayList<>();
 
     public Planeta(Jugador propietario, TipoPlaneta tipoPlaneta) {
         this.propietario = propietario;
@@ -101,10 +103,19 @@ public class Planeta extends ElementoDeJuego implements Dañable, IObservador<El
 
     @Override
     public void actualizar(ElementoDeBatalla elemento) {
+        elementoConstruccion.remove(elemento);
         if(elemento instanceof Torreta) {
             torretas.add((Torreta) elemento);
         }else if (elemento instanceof Nave) {
             naves.add((Nave) elemento);
         }
+    }
+
+    public List<ConstruccionElementoBatalla> getElementoConstruccion() {
+        return elementoConstruccion;
+    }
+
+    public void addElementoConstruccion(ConstruccionElementoBatalla construccionElementoBatalla) {
+        elementoConstruccion.add(construccionElementoBatalla);
     }
 }
