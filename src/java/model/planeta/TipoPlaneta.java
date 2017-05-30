@@ -1,10 +1,10 @@
-package java.model;
+package java.model.planeta;
 
 public enum TipoPlaneta {
 
-    CHICO(200, 10, 2),
-    MEDIANO(600, 6, 6),
-    GRANDE(1000, 2, 10);
+    CHICO(200, 10, 5),
+    MEDIANO(600, 6, 10),
+    GRANDE(1000, 2, 15);
 
     private int capacidadPoblacion;
     private int velocidadCrecimientoPob;

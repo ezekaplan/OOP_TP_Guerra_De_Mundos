@@ -1,9 +1,8 @@
-package java.model;
+package java.controller;
 
-/**
- * Created by Federico on 21/5/2017.
- */
-public class Turno {
+import java.model.Jugador;
+
+public class TurnoController {
 
     private static Jugador jugador;
 
@@ -12,6 +11,6 @@ public class Turno {
     }
 
     public static void setJugador(Jugador jugador) {
-        Turno.jugador = jugador;
+        TurnoController.jugador = jugador;
     }
 }

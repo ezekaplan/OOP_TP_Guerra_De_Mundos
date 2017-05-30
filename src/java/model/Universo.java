@@ -1,5 +1,6 @@
 package java.model;
 
+import java.model.planeta.Planeta;
 import java.util.List;
 
 public class Universo {

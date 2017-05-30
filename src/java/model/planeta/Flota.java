@@ -1,5 +1,8 @@
-package java.model;
+package java.model.planeta;
 
+import java.model.batalla.Dañable;
+import java.model.batalla.Estrategia;
+import java.model.batalla.Poder;
 import java.model.naves.Nave;
 import java.util.ArrayList;
 import java.util.List;
@@ -11,6 +14,7 @@ public class Flota implements Dañable {
 
     private Poder poder;
     private List<Nave> naves;
+    private Estrategia estrategia;
 
     public Flota() {
     poder = new Poder();
@@ -38,5 +42,13 @@ public class Flota implements Dañable {
     @Override
     public void recibirDaño(Poder poder) {
         //TODO Destruir naves segun el poder de defensa del planeta atacado
+    }
+
+    public Estrategia getEstrategia() {
+        return estrategia;
+    }
+
+    public void setEstrategia(Estrategia estrategia) {
+        this.estrategia = estrategia;
     }
 }

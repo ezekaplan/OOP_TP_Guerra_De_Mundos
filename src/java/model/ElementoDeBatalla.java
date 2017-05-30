@@ -1,10 +1,28 @@
 package java.model;
 
-public class ElementoDeBatalla {
+import java.exception.ConstruccionEnCursoException;
+import java.model.planeta.Planeta;
 
-    protected Integer nivel = 1;
+public abstract class ElementoDeBatalla extends ElementoDeJuego {
 
-    protected void subirNivel() {
-        nivel++;
+    protected int nivel = 1;
+    protected int costo;
+
+
+    public ElementoDeBatalla(int costo) {
+        this.costo = costo;
+
+    }
+
+    public int getNivel() {
+        return nivel;
+    }
+
+    public void subirNivel() {
+        nivel ++;
+    }
+
+    public int getCosto() {
+        return costo * nivel;
     }
 }
