@@ -1,14 +1,14 @@
-package java.model.planeta;
+package model.planeta;
 
-import java.model.ConstruccionElementoBatalla;
-import java.model.ElementoDeBatalla;
-import java.model.ElementoDeJuego;
-import java.model.Jugador;
-import java.model.batalla.Dañable;
-import java.model.batalla.Poder;
-import java.model.naves.Nave;
-import java.model.naves.NaveBatalla;
-import java.observer.IObservador;
+import model.ConstruccionElementoBatalla;
+import model.ElementoDeBatalla;
+import model.ElementoDeJuego;
+import model.Jugador;
+import model.batalla.Dañable;
+import model.batalla.Poder;
+import model.naves.Nave;
+import model.naves.NaveBatalla;
+import observer.IObservador;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;

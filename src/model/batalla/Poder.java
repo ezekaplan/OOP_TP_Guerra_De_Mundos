@@ -1,4 +1,4 @@
-package java.model.batalla;
+package model.batalla;
 
 public class Poder {
 

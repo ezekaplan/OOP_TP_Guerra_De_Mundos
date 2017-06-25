@@ -1,9 +1,9 @@
-package java.model.batalla;
+package model.batalla;
 
-import java.model.planeta.Flota;
-import java.model.planeta.Planeta;
-import java.controller.TurnoController;
-import java.observer.Observado;
+import model.planeta.Flota;
+import model.planeta.Planeta;
+import controller.TurnoController;
+import observer.Observado;
 
 public class Batalla extends Observado<Planeta>{
 

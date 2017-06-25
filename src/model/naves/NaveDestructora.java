@@ -1,7 +1,7 @@
-package java.model.naves;
+package model.naves;
 
 
-import java.model.batalla.Poder;
+import model.batalla.Poder;
 
 public class NaveDestructora extends Nave {
 

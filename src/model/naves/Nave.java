@@ -1,8 +1,7 @@
-package java.model.naves;
+package model.naves;
 
-import java.model.ElementoDeBatalla;
-import java.model.ElementoDeJuego;
-import java.model.batalla.Poder;
+import model.ElementoDeBatalla;
+import model.batalla.Poder;
 
 public abstract class Nave extends ElementoDeBatalla {
 

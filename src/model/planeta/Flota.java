@@ -1,9 +1,9 @@
-package java.model.planeta;
+package model.planeta;
 
-import java.model.batalla.Dañable;
-import java.model.batalla.Estrategia;
-import java.model.batalla.Poder;
-import java.model.naves.Nave;
+import model.batalla.Dañable;
+import model.batalla.Estrategia;
+import model.batalla.Poder;
+import model.naves.Nave;
 import java.util.ArrayList;
 import java.util.List;
 

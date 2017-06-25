@@ -1,11 +1,11 @@
-package java.model;
+package model;
 
-import java.model.naves.NaveBatalla;
-import java.model.naves.NaveColonizadora;
-import java.model.naves.NaveDestructora;
-import java.model.planeta.Planeta;
-import java.model.planeta.Torreta;
-import java.observer.Observado;
+import model.naves.NaveBatalla;
+import model.naves.NaveColonizadora;
+import model.naves.NaveDestructora;
+import model.planeta.Planeta;
+import model.planeta.Torreta;
+import observer.Observado;
 
 public class ConstruccionElementoBatalla extends Observado<ElementoDeBatalla> {
 

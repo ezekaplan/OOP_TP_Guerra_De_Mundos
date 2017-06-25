@@ -1,4 +1,4 @@
-package java.model;
+package model;
 
 public abstract class ElementoDeBatalla extends ElementoDeJuego {
 

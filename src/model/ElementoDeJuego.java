@@ -1,6 +1,6 @@
-package java.model;
+package model;
 
-import java.observer.Observado;
+import observer.Observado;
 
 public abstract class ElementoDeJuego extends Observado {
 

@@ -1,6 +1,6 @@
-package java.controller;
+package controller;
 
-import java.model.Jugador;
+import model.Jugador;
 
 public class TurnoController {
 
