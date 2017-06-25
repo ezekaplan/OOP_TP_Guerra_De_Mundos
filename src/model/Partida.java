@@ -1,6 +1,6 @@
-package java.model;
+package model;
 
-import java.model.planeta.Planeta;
+import model.planeta.Planeta;
 import java.util.*;
 
 /**

@@ -1,4 +1,4 @@
-package java.model.planeta;
+package model.planeta;
 
 public enum TipoPlaneta {
 
@@ -6,9 +6,9 @@ public enum TipoPlaneta {
     MEDIANO(600, 6, 10),
     GRANDE(1000, 2, 15);
 
-    private int capacidadPoblacion;
-    private int velocidadCrecimientoPob;
-    private int capacidadProduccion;
+    public int capacidadPoblacion;
+    public int velocidadCrecimientoPob;
+    public int capacidadProduccion;
 
     TipoPlaneta(int capacidadPoblacion, int velocidadCrecimientoPob, int capacidadProduccion) {
         this.capacidadPoblacion = capacidadPoblacion;

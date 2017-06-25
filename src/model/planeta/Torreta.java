@@ -1,7 +1,7 @@
-package java.model.planeta;
+package model.planeta;
 
 
-import java.model.ElementoDeBatalla;
+import model.ElementoDeBatalla;
 
 public class Torreta extends ElementoDeBatalla {
 

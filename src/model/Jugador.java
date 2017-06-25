@@ -1,14 +1,17 @@
-package java.model;
+package model;
 
-import java.controller.TurnoController;
-import java.model.planeta.Planeta;
-import java.observer.IObservador;
+import controller.TurnoController;
+import model.planeta.Planeta;
+import observer.IObservador;
 import java.util.List;
 
 public class Jugador implements IObservador<Planeta> {
     List<Planeta> planetas;
     private String nombre;
 
+    public Jugador(String n){
+        this.nombre = n;
+    }
     @Override
     public void actualizar(Planeta planeta) {
         if (TurnoController.getJugador().equals(this)) {

@@ -1,6 +1,6 @@
-package java.model.naves;
+package model.naves;
 
-import java.model.batalla.Poder;
+import model.batalla.Poder;
 
 /**
  * Esta nave debe ser mandada para colonizar los planetas que ya no tienen torretas.
