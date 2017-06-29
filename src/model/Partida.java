@@ -17,7 +17,6 @@ public class Partida {
     private int cantUsuarios;
 
 
-
     public void main() {
 
     }
@@ -58,4 +57,11 @@ public class Partida {
         private Planeta planeta;
     }
 
+
+
+    public Partida(int cantPlanetas, int cantUsuarios, Jugador jugadorActivo) {
+        this.cantPlanetas = cantPlanetas;
+        this.cantUsuarios = cantUsuarios;
+
+    }
 }

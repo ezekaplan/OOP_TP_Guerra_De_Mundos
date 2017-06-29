@@ -12,10 +12,8 @@ import vista.VistaInicio;
 public class Programa {
     public static void main(String [] args){
 
-        JuegoController controlador = new JuegoController();//Creo el controlador.
-        Universo modelo = new Universo();//Creo el modelo.
         //Creo la vista:
-        JFrame inicio = new VistaInicio(controlador, modelo);
+        JFrame inicio = new VistaInicio();
         inicio.setVisible(true);
 
         /*java.awt.EventQueue.invokeLater(new Runnable() {

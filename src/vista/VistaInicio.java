@@ -1,43 +1,36 @@
 package vista;
 
+import controller.JuegoController;
+import controller.TurnoController;
+import model.Jugador;
+import model.Universo;
+
 import javax.swing.*;
-import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.ArrayList;
-import java.util.List;
-import controller.JuegoController;
-import model.Universo;
-import principal.*;
+import java.awt.event.WindowEvent;
+import java.util.LinkedList;
 
 /**
  * Created by nicolas on 24/06/2017.
  */
-public class VistaInicio extends JFrame{
+public class VistaInicio extends JFrame {
 
     private Universo model;
-    private JuegoController controller;
-    private List<JTextField> jugadoresLista = new ArrayList<>();
+    private LinkedList<JTextField> jugadoresLista = new LinkedList<>();
     private int jugadores = 0, planetas = 0;
 
-    public VistaInicio(JuegoController controlador, Universo modelo){
+    public VistaInicio() {
         this.setTitle("Age of Guerra del Espacio");
         this.setSize(320, 150);
         this.setLocation(100, 100);
         this.setResizable(false);
-        this.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+        this.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
 
         this.setLayout(null);
-        //Asigno el controlador dentro de la vista.
-        controller = new JuegoController();
-        this.controller = controlador;
-
-        //Asigno el modelo dentro de la vista:
-        model = new Universo();
-        model = modelo;
 
         //Las etiquetas:
-        JLabel jug = new JLabel("Ingrese la cantidad de jugadores:" );
+        JLabel jug = new JLabel("Ingrese la cantidad de jugadores:");
         JLabel pl = new JLabel("Ingrese la cantidad de planetas:");
         jug.setBounds(10, 10, 250, 20);
         pl.setBounds(10, 40, 250, 20);
@@ -66,8 +59,8 @@ public class VistaInicio extends JFrame{
         comenzar.setBounds(90, 340, 140, 20);
 
         //El evento del clic en el botón continuar:
-        continuar.addActionListener(new java.awt.event.ActionListener(){
-            public void actionPerformed(ActionEvent evt){
+        continuar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(ActionEvent evt) {
                 int aux, ypos = 40;
                 jugadores = Integer.parseInt(jugador.getText());
                 planetas = Integer.parseInt(planeta.getText());
@@ -84,7 +77,7 @@ public class VistaInicio extends JFrame{
                 //Agrego botón de Comenzar.
                 VistaInicio.this.add(comenzar);
                 //Creo los campos de texto según la cantidad de jugadores.
-                for(aux = jugadores; aux > 0; aux--){
+                for (aux = jugadores; aux > 0; aux--) {
                     JTextField jnuevo = new JTextField();
                     jnuevo.setBounds(10, ypos, 200, 20);
                     ypos = ypos + 30;
@@ -96,19 +89,34 @@ public class VistaInicio extends JFrame{
                 }
             }
         });
+        Comenzar comenzar1 = new Comenzar();
+        comenzar1.setVistaInicio(this);
+        comenzar.addActionListener(comenzar1);
+    }
 
-        comenzar.addActionListener(new java.awt.event.ActionListener(){
-            @Override
-            public void actionPerformed(ActionEvent evt) {
-                //Como obtengo el texto de cada elemento de la lista? ya estan agregados, solo tengo que llamar
-                //al metodo crear universo.
-                //para saber si los nombres se crearon bien.
-                for (JTextField aJugadoresLista : jugadoresLista) {
-                    System.out.println(aJugadoresLista.getText());
-                }
-                controller.crearUniverso(jugadoresLista, planetas, model);
+    class Comenzar implements ActionListener {
 
+        private VistaInicio vistaInicio;
+
+        @Override
+        public void actionPerformed(ActionEvent evt) {
+            //Como obtengo el texto de cada elemento de la lista? ya estan agregados, solo tengo que llamar
+            //al metodo crear universo.
+            //para saber si los nombres se crearon bien.
+            LinkedList<Jugador> jugadores = new LinkedList<>();
+            for (JTextField aJugadoresLista : jugadoresLista) {
+                System.out.println(aJugadoresLista.getText());
+                jugadores.add(new Jugador(aJugadoresLista.getText()));
             }
-        });
+            JuegoController.getInstance().crearUniverso(jugadores, planetas);
+            TurnoController.getInstance().activeJugador(jugadores);
+            VistaJuego vistaJuego = new VistaJuego();
+            vistaJuego.setVisible(true);
+            vistaInicio.dispatchEvent(new WindowEvent(vistaInicio, WindowEvent.WINDOW_CLOSING));
+        }
+
+        public void setVistaInicio(VistaInicio vistaInicio) {
+            this.vistaInicio = vistaInicio;
+        }
     }
 }

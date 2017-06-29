@@ -8,14 +8,18 @@ public class Universo {
     List<Planeta> planetas;
     List<Jugador> jugadores;
 
-    public Universo(List<Planeta> planetas, List<Jugador> jugadores) {
-        this.planetas = planetas;
-        this.jugadores = jugadores;
+    private static Universo instance;
+
+    private Universo() {}
+
+    public static Universo getInstance() {
+        if (instance == null) {
+            instance = new Universo();
+        }
+        return instance;
     }
 
-    public Universo(){
 
-    }
 
     public void setPlanetas(List<Planeta> planetas) {
         this.planetas = planetas;
