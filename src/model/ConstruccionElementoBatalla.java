@@ -29,10 +29,12 @@ public class ConstruccionElementoBatalla extends Observado<ElementoDeBatalla> {
     }
 
     private int getTurnosConstruccion() {
+
         return elementoDeBatalla.getCosto() / 2;
     }
 
     public int getTurnosRestantes() {
+
         return turnosConstruccion - turnoActual;
     }
 

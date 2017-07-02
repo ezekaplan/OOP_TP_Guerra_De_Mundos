@@ -28,4 +28,12 @@ public class Universo {
     public void setJugadores(List<Jugador> jugadores) {
         this.jugadores = jugadores;
     }
+
+    public List<Planeta> getPlanetas() {
+        return planetas;
+    }
+
+    public List<Jugador> getJugadores() {
+        return jugadores;
+    }
 }

@@ -43,27 +43,36 @@ public class JuegoController {
         //Creo los tipoPlaneta:
         Random aleatorio = new Random();
 
-        for (aux = 0; aux < planetasPorJugador; aux++) {
-            Jugador jugador = jugadores.get(indiceLista);
-            Planeta planeta;
-            aux = aleatorio.nextInt(3001);//Genera un random entre 0 y 3000.
-            if (aux < 1001) {//Si esta entre 0 y 1000 es un planeta chico.
-                TipoPlaneta chico = TipoPlaneta.CHICO;//Cree la enum.
-                //Creo el tipoDePlaneta:
-                planeta = new Planeta(jugador, chico);
-            } else if (aux > 1000 && aux < 2001) {//Aux esta entre 1000 y 2000. Planeta mediano.
-                TipoPlaneta mediano = TipoPlaneta.MEDIANO;//Cree la enum.
-                //Creo el tipoDePlaneta:
-                planeta = new Planeta(jugador, mediano);
-            } else {//Aux es mayor que 2000. Planeta grande.
-                TipoPlaneta grande = TipoPlaneta.GRANDE;//Cree la enum.
-                //Creo el tipoDePlaneta:
-                planeta = new Planeta(jugador, grande);
+        do {
+            for (int i = 0; i < planetasPorJugador; i++) {
+                Jugador jugador = jugadores.get(indiceLista);
+                Planeta planeta;
+                aux = aleatorio.nextInt(3001);//Genera un random entre 0 y 3000.
+                if (aux < 1001) {//Si esta entre 0 y 1000 es un planeta chico.
+                    TipoPlaneta chico = TipoPlaneta.CHICO;//Cree la enum.
+                    //Creo el tipoDePlaneta:
+                    planeta = new Planeta(jugador, chico);
+                } else if (aux > 1000 && aux < 2001) {//Aux esta entre 1000 y 2000. Planeta mediano.
+                    TipoPlaneta mediano = TipoPlaneta.MEDIANO;//Cree la enum.
+                    //Creo el tipoDePlaneta:
+                    planeta = new Planeta(jugador, mediano);
+                } else {//Aux es mayor que 2000. Planeta grande.
+                    TipoPlaneta grande = TipoPlaneta.GRANDE;//Cree la enum.
+                    //Creo el tipoDePlaneta:
+                    planeta = new Planeta(jugador, grande);
+                }
+                jugador.addPlaneta(planeta);
+                planetas.add(planeta);
+                cantPlanetas--;
             }
-            jugador.addPlaneta(planeta);
-            planetas.add(planeta);
+            indiceLista++;
+        }while(cantPlanetas > 0);
+        for(Jugador i : jugadores){
+            System.out.println(i.getNombre());
         }
-
+        for (Planeta i : planetas) {
+            System.out.println("Propietario: "+ i.getPropietario().getNombre());
+        }
         //Ya tengo las dos listas completas ahora creo el universo:
         Universo.getInstance().setJugadores(jugadores);
         Universo.getInstance().setPlanetas(planetas);

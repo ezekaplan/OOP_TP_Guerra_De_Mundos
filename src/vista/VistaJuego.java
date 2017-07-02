@@ -25,17 +25,18 @@ public class VistaJuego extends JFrame {
         //Las etiquetas:
         Jugador jugador = TurnoController.jugador;
         JLabel jug = new JLabel("Turno del jugador: " + jugador.getNombre());
-        JLabel pl = new JLabel("cantidad de planetas:" + jugador.getCantidadPlanetas());
+        JLabel pl = new JLabel("Cantidad de planetas: " + jugador.getCantidadPlanetas());
         jug.setBounds(10, 10, 250, 20);
         pl.setBounds(10, 40, 250, 20);
         this.add(jug);
         this.add(pl);
 
+        this.setSize(640, 480);
         for (int i = 0; i < jugador.getCantidadPlanetas(); i++) {
             Planeta planeta = jugador.getPlanetas().get(i);
-            JLabel planetaLabel = new JLabel("Planeta " + i + 1 + " Tipo Planeta: "
+            JLabel planetaLabel = new JLabel("Planeta " + (i + 1) + " Tipo Planeta: "
                     + planeta.getTipoPlaneta().name() + " Poblacion: " + planeta.getPoblacion());
-            planetaLabel.setBounds(10, 70 + i * 10, 250, 20);
+            planetaLabel.setBounds(10, (70 + (i * 20)), 450, 20);
             this.add(planetaLabel);
         }
 
@@ -52,7 +53,7 @@ public class VistaJuego extends JFrame {
         //El botón para seguir:
         JButton continuar = new JButton();
         continuar.setText("Siguiente");
-        continuar.setBounds(110, 80, 100, 20);
+        continuar.setBounds(110, 420, 100, 20);
         this.add(continuar);
     }
 

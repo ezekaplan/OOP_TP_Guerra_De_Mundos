@@ -12,6 +12,7 @@ public abstract class ElementoDeBatalla extends ElementoDeJuego {
     }
 
     public int getNivel() {
+
         return nivel;
     }
 
