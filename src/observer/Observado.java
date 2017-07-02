@@ -8,10 +8,12 @@ public abstract class Observado<A> {
             = new ArrayList<IObservador>();
 
     public void registrarObservador(IObservador obs) {
+
         this.observadores.add(obs);
     }
 
     public void quitarObservador(IObservador obs) {
+
         this.observadores.remove(obs);
     }
 

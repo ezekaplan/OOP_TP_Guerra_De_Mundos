@@ -4,12 +4,15 @@ import controller.JuegoController;
 import controller.TurnoController;
 import model.Jugador;
 import model.Universo;
+import model.planeta.Planeta;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowEvent;
+import java.util.ArrayList;
 import java.util.LinkedList;
+import java.util.List;
 
 /**
  * Created by nicolas on 24/06/2017.

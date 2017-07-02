@@ -13,7 +13,6 @@ public class Batalla extends Observado<Planeta>{
     public Batalla(Flota flota, Planeta planeta) {
         this.flota = flota;
         this.planeta = planeta;
-
         this.registrarObservador(TurnoController.getJugador());
         this.registrarObservador(planeta.getPropietario());
     }
