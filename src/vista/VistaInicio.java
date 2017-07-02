@@ -95,6 +95,7 @@ public class VistaInicio extends JFrame {
         Comenzar comenzar1 = new Comenzar();
         comenzar1.setVistaInicio(this);
         comenzar.addActionListener(comenzar1);
+
     }
 
     class Comenzar implements ActionListener {

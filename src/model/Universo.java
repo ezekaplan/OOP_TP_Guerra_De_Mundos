@@ -7,6 +7,15 @@ public class Universo {
 
     List<Planeta> planetas;
     List<Jugador> jugadores;
+    private int jugadorActivo;
+
+    public void setJugadorActivo(int jugadorActivo) {
+        this.jugadorActivo = jugadorActivo;
+    }
+
+    public int getJugadorActivo() {
+        return jugadorActivo;
+    }
 
     private static Universo instance;
 

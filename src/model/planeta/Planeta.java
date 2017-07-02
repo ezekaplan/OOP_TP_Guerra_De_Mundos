@@ -18,6 +18,7 @@ public class Planeta extends ElementoDeJuego implements Dañable, IObservador<El
     private UUID uuid = UUID.randomUUID();
 
     private int poblacion = 2;
+    private int capacidadDeProduccion = 1;
     private Jugador propietario;
     private TipoPlaneta tipoPlaneta;
     private List<Nave> naves = new ArrayList<>();
@@ -28,6 +29,10 @@ public class Planeta extends ElementoDeJuego implements Dañable, IObservador<El
     public Planeta(Jugador propietario, TipoPlaneta tipoPlaneta) {
         this.propietario = propietario;
         this.tipoPlaneta = tipoPlaneta;
+    }
+
+    public int getCapacidadDeProduccion() {
+        return capacidadDeProduccion;
     }
 
     @Override
@@ -117,5 +122,9 @@ public class Planeta extends ElementoDeJuego implements Dañable, IObservador<El
 
     public void addElementoConstruccion(ConstruccionElementoBatalla construccionElementoBatalla) {
         elementoConstruccion.add(construccionElementoBatalla);
+    }
+
+    public void aumentarCapacidadDeProduccion(){
+        this.capacidadDeProduccion += 1;
     }
 }

@@ -10,10 +10,12 @@ import java.util.List;
 public class Jugador implements IObservador<Planeta> {
     private List<Planeta> planetas = new ArrayList<>();
     private String nombre;
+    private int recursos = 1;
 
-    public Jugador(String n){
+    public Jugador(String n) {
         this.nombre = n;
     }
+
     @Override
     public void actualizar(Planeta planeta) {
         if (TurnoController.getJugador().equals(this)) {
@@ -27,7 +29,7 @@ public class Jugador implements IObservador<Planeta> {
         planetas.add(planeta);
     }
 
-    public int getCantidadPlanetas(){
+    public int getCantidadPlanetas() {
         return planetas.size();
     }
 
@@ -37,5 +39,9 @@ public class Jugador implements IObservador<Planeta> {
 
     public List<Planeta> getPlanetas() {
         return planetas;
+    }
+
+    public void aumentarRecursos(){
+        this.recursos += 1;
     }
 }
