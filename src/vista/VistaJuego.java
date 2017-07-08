@@ -4,17 +4,19 @@ import controller.TurnoController;
 import model.Jugador;
 import model.Universo;
 import model.planeta.Planeta;
-import observer.IObservador;
+import observer.*;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by nicolas on 24/06/2017.
  */
 /*Esta vista es el formulario que aparece después de haber ingresado los nombres de los jugadores.
 * Acá es donde se ve la lista de planetas y se empieza a jugar.*/
-public class VistaJuego extends JFrame{
+public class VistaJuego extends JFrame implements IObservador{
 
     JLabel  acciones = new JLabel("Acciones disponibles: ");
     JButton naves = new JButton();
@@ -23,7 +25,9 @@ public class VistaJuego extends JFrame{
     JButton colonizar = new JButton();
     JButton atacarNaves = new JButton();
     JButton atacarPlanetas = new JButton();
-    private int jugadorActivo = 0;
+    boolean primerTurno = true;
+    private int jugadorActivo = Universo.getInstance().getJugadorActivo();
+    private List<JLabel> etiquetas = new ArrayList<JLabel>();
 
     public int getJugadorActivo() {
         return jugadorActivo;
@@ -35,73 +39,43 @@ public class VistaJuego extends JFrame{
         this.setLocation(100, 100);
         this.setResizable(false);
         this.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
-        boolean primerTurno = true;
         this.setLayout(null);
 
         System.out.println(Universo.getInstance().getJugadores().get(0).getNombre());
-        //Las etiquetas:
-        //do {
-            Jugador jugador = new Jugador("");
-            if(primerTurno){
-                jugador = Universo.getInstance().getJugadores().get(jugadorActivo);
-                Universo.getInstance().setJugadorActivo(jugadorActivo);
-                primerTurno = false;
-            }else if((jugadorActivo + 1 ) == Universo.getInstance().getJugadores().size()){
-                jugadorActivo = 0;
-                Universo.getInstance().setJugadorActivo(jugadorActivo);
-            }else{
-                jugadorActivo += 1;
-                jugador = Universo.getInstance().getJugadores().get(jugadorActivo);
-                Universo.getInstance().setJugadorActivo(jugadorActivo);
-            }
-            JLabel jug = new JLabel("Turno del jugador: " + jugador.getNombre());
-            JLabel pl = new JLabel("Cantidad de planetas: " + jugador.getCantidadPlanetas());
-            jug.setBounds(10, 10, 250, 20);
-            pl.setBounds(10, 40, 250, 20);
-            this.add(jug);
-            this.add(pl);
 
-            this.setSize(640, 480);
-            for (int i = 0; i < jugador.getCantidadPlanetas(); i++) {
-                Planeta planeta = jugador.getPlanetas().get(i);
-                JLabel planetaLabel = new JLabel("Planeta " + (i + 1) + " Tipo Planeta: "
-                        + planeta.getTipoPlaneta().name() + " Poblacion: " + planeta.getPoblacion()
-                        + " Cantidad de naves: " + planeta.getNaves().size() + " Cantidad de torretas: "
-                        + planeta.getTorretas().size() + " Cap. Prod. " + planeta.getCapacidadDeProduccion());
-                planetaLabel.setBounds(10, (70 + (i * 20)), 600, 20);
-                this.add(planetaLabel);
-                //Si crea la última label, crea los botones debajo:
-                if ((i + 1) == jugador.getCantidadPlanetas()) {
+        if(Universo.getInstance().getJugadores().size() == 1){
+            VistaFin fin = new VistaFin();
+            fin.setVisible(true);
+        }
 
-                    acciones.setBounds(10, (100 + (i * 20)), 250, 20);
+        crearEtiquetas();
 
-                    naves.setBounds(10, (120 + (i * 20)), 170, 30);
-                    naves.setText("Producir naves");
+            acciones.setBounds(10, 280, 250, 20);
 
-                    torretas.setBounds(190, (120 + (i * 20)), 170, 30);
-                    torretas.setText("Producir torretas");
+            naves.setBounds(10, 320, 170, 30);
+            naves.setText("Producir naves");
 
-                    produccion.setBounds(370, (120 + (i * 20)), 170, 30);
-                    produccion.setText("Aumentar producción");
+            torretas.setBounds(190, 320, 170, 30);
+            torretas.setText("Producir torretas");
 
-                    colonizar.setBounds(10, (160 + (i * 20)), 170, 30);
-                    colonizar.setText("Colonizar");
+            produccion.setBounds(370, 320, 170, 30);
+            produccion.setText("Aumentar producción");
 
-                    atacarNaves.setBounds(190, (160 + (i * 20)), 170, 30);
-                    atacarNaves.setText("Atacar naves");
+            colonizar.setBounds(10, 370, 170, 30);
+            colonizar.setText("Colonizar");
 
-                    atacarPlanetas.setBounds(370, (160 + (i * 20)), 170, 30);
-                    atacarPlanetas.setText("Atacar planeta");
-                    this.add(acciones);
-                    this.add(naves);
-                    this.add(torretas);
-                    this.add(produccion);
-                    this.add(colonizar);
-                    this.add(atacarNaves);
-                    this.add(atacarPlanetas);
-                }
-            }
+            atacarNaves.setBounds(190, 370, 170, 30);
+            atacarNaves.setText("Atacar naves");
 
+            atacarPlanetas.setBounds(370, 370, 170, 30);
+            atacarPlanetas.setText("Atacar planeta");
+            this.add(acciones);
+            this.add(naves);
+            this.add(torretas);
+            this.add(produccion);
+            this.add(colonizar);
+            this.add(atacarNaves);
+            this.add(atacarPlanetas);
             naves.addActionListener(new java.awt.event.ActionListener() {
                 public void actionPerformed(ActionEvent evt) {
 
@@ -141,6 +115,18 @@ public class VistaJuego extends JFrame{
 
                 }
             });
+
+            /*JButton refrescar = new JButton();
+            refrescar.setText("Actualizar");
+            refrescar.setBounds(10, 420, 130, 20);
+            this.add(refrescar);*/
+
+            /*refrescar.addActionListener(new java.awt.event.ActionListener() {
+                public void actionPerformed(ActionEvent evt) {
+                    VistaJuego.this.repaint();
+
+                }
+            });*/
         /*//Los campos de texto:
         JTextField jugador = new JTextField();
         JTextField planeta = new JTextField();
@@ -152,10 +138,54 @@ public class VistaJuego extends JFrame{
         this.add(planeta);*/
 
             //El botón para seguir:
-            JButton continuar = new JButton();
+            /*JButton continuar = new JButton();
             continuar.setText("Pasar turno");
             continuar.setBounds(255, 420, 130, 20);
-            this.add(continuar);
+            this.add(continuar);*/
         //}while(Universo.getInstance().getJugadores().size() != 1);
+    }
+
+    @Override
+    public void actualizar(Object arg) {
+
+    }
+
+    public void crearEtiquetas(){
+        //Las etiquetas:
+        //do {
+        Jugador jugador = new Jugador("");
+
+        jugador = Universo.getInstance().getJugadores().get(jugadorActivo);
+        /*if(primerTurno){
+            jugador = Universo.getInstance().getJugadores().get(jugadorActivo);
+            Universo.getInstance().setJugadorActivo(jugadorActivo);
+            primerTurno = false;
+        }else if((jugadorActivo + 1 ) == Universo.getInstance().getJugadores().size()){
+            jugadorActivo = 0;
+            Universo.getInstance().setJugadorActivo(jugadorActivo);
+        }else{
+            jugadorActivo += 1;
+            jugador = Universo.getInstance().getJugadores().get(jugadorActivo);
+            Universo.getInstance().setJugadorActivo(jugadorActivo);
+        }*/
+        JLabel jug = new JLabel("Turno del jugador: " + jugador.getNombre());
+        JLabel pl = new JLabel("Cantidad de planetas: " + jugador.getCantidadPlanetas() + "     Recursos: " +
+                                jugador.getRecursos());
+        jug.setBounds(10, 10, 250, 20);
+        pl.setBounds(10, 40, 250, 20);
+        this.add(jug);
+        this.add(pl);
+
+        this.setSize(640, 480);
+        for (int i = 0; i < jugador.getCantidadPlanetas(); i++) {
+            Planeta planeta = jugador.getPlanetas().get(i);
+            JLabel planetaLabel = new JLabel("Planeta " + (i + 1) + " Tipo Planeta: "
+                    + planeta.getTipoPlaneta().name() + " Poblacion: " + planeta.getPoblacion()
+                    + " Cantidad de naves: " + planeta.getNaves().size() + " Cantidad de torretas: "
+                    + planeta.getTorretas().size() + " Cap. Prod. " + planeta.getCapacidadDeProduccion());
+            planetaLabel.setBounds(10, (70 + (i * 20)), 600, 20);
+            etiquetas.add(planetaLabel);
+            this.add(planetaLabel);
+        }
     }
 }

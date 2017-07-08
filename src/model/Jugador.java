@@ -41,7 +41,11 @@ public class Jugador implements IObservador<Planeta> {
         return planetas;
     }
 
-    public void aumentarRecursos(){
-        this.recursos += 1;
+    public void aumentarRecursos(int suma){
+        this.recursos += suma;
+    }
+
+    public int getRecursos() {
+        return recursos;
     }
 }

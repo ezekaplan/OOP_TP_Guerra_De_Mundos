@@ -4,8 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public abstract class Observado<A> {
-    private List<IObservador> observadores
-            = new ArrayList<IObservador>();
+    private List<IObservador> observadores = new ArrayList<IObservador>();
 
     public void registrarObservador(IObservador obs) {
 

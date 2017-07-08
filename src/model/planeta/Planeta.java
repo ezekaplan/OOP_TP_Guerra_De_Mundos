@@ -127,4 +127,8 @@ public class Planeta extends ElementoDeJuego implements Dañable, IObservador<El
     public void aumentarCapacidadDeProduccion(){
         this.capacidadDeProduccion += 1;
     }
+
+    public void aumentarPoblacion(){
+        this.poblacion += capacidadDeProduccion;
+    }
 }

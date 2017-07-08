@@ -1,13 +1,15 @@
 package model;
 
 import model.planeta.Planeta;
+import observer.Observado;
+
 import java.util.List;
 
-public class Universo {
+public class Universo{
 
     List<Planeta> planetas;
     List<Jugador> jugadores;
-    private int jugadorActivo;
+    private int jugadorActivo = 0;
 
     public void setJugadorActivo(int jugadorActivo) {
         this.jugadorActivo = jugadorActivo;
@@ -27,8 +29,6 @@ public class Universo {
         }
         return instance;
     }
-
-
 
     public void setPlanetas(List<Planeta> planetas) {
         this.planetas = planetas;
