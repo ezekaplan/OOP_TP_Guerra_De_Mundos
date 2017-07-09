@@ -35,7 +35,7 @@ public class VistaJuego extends JFrame implements IObservador{
 
     public VistaJuego() {
         this.setTitle("Age of Guerra del Espacio");
-        this.setSize(320, 300);
+        this.setSize(600, 300);
         this.setLocation(100, 100);
         this.setResizable(false);
         this.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
@@ -79,12 +79,15 @@ public class VistaJuego extends JFrame implements IObservador{
             naves.addActionListener(new java.awt.event.ActionListener() {
                 public void actionPerformed(ActionEvent evt) {
 
+                    VistaAccion producirNaves = new VistaAccion(VistaJuego.this, 1);
+                    producirNaves.setVisible(true);
                 }
             });
 
             torretas.addActionListener(new java.awt.event.ActionListener() {
                 public void actionPerformed(ActionEvent evt) {
-
+                    VistaAccion producirTorretas = new VistaAccion(VistaJuego.this, 2);
+                    producirTorretas.setVisible(true);
                 }
             });
 
@@ -171,19 +174,20 @@ public class VistaJuego extends JFrame implements IObservador{
         JLabel jug = new JLabel("Turno del jugador: " + jugador.getNombre());
         JLabel pl = new JLabel("Cantidad de planetas: " + jugador.getCantidadPlanetas() + "     Recursos: " +
                                 jugador.getRecursos());
-        jug.setBounds(10, 10, 250, 20);
-        pl.setBounds(10, 40, 250, 20);
+        jug.setBounds(10, 10, 500, 20);
+        pl.setBounds(10, 40, 500, 20);
         this.add(jug);
         this.add(pl);
 
-        this.setSize(640, 480);
+        this.setSize(900, 480);
         for (int i = 0; i < jugador.getCantidadPlanetas(); i++) {
             Planeta planeta = jugador.getPlanetas().get(i);
             JLabel planetaLabel = new JLabel("Planeta " + (i + 1) + " Tipo Planeta: "
                     + planeta.getTipoPlaneta().name() + " Poblacion: " + planeta.getPoblacion()
-                    + " Cantidad de naves: " + planeta.getNaves().size() + " Cantidad de torretas: "
+                    + " Cantidad de naves: " + planeta.getNaves().size() + "(batalla) " + planeta.getNavesColonizadoras().size()
+                    + "(colonizadoras) " + planeta.getFlotas().size() + "(destructoras) " + " Cantidad de torretas: "
                     + planeta.getTorretas().size() + " Cap. Prod. " + planeta.getCapacidadDeProduccion());
-            planetaLabel.setBounds(10, (70 + (i * 20)), 600, 20);
+            planetaLabel.setBounds(10, (70 + (i * 20)), 900, 20);
             etiquetas.add(planetaLabel);
             this.add(planetaLabel);
         }
