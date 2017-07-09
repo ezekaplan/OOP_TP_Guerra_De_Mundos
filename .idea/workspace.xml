@@ -1,36 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="a1de036c-331d-49d3-b245-fc95615c877f" name="Default" comment="* Agregado Observer&#10;* Agregado ElementoDeBatalla y su construccion&#10;&#10;Falta:&#10;* Terminar mecanismo de batalla">
+    <list default="true" id="a1de036c-331d-49d3-b245-fc95615c877f" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/controller/JuegoController.java" afterPath="$PROJECT_DIR$/src/controller/JuegoController.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/controller/TurnoController.java" afterPath="$PROJECT_DIR$/src/controller/TurnoController.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/model/ConstruccionElementoBatalla.java" afterPath="$PROJECT_DIR$/src/model/ConstruccionElementoBatalla.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/model/ElementoDeBatalla.java" afterPath="$PROJECT_DIR$/src/model/ElementoDeBatalla.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/model/ElementoDeJuego.java" afterPath="$PROJECT_DIR$/src/model/ElementoDeJuego.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/model/Jugador.java" afterPath="$PROJECT_DIR$/src/model/Jugador.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/model/Partida.java" afterPath="$PROJECT_DIR$/src/model/Partida.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/model/Universo.java" afterPath="$PROJECT_DIR$/src/model/Universo.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/model/batalla/Batalla.java" afterPath="$PROJECT_DIR$/src/model/batalla/Batalla.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/model/batalla/Dañable.java" afterPath="$PROJECT_DIR$/src/model/batalla/Dañable.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/model/batalla/Estrategia.java" afterPath="$PROJECT_DIR$/src/model/batalla/Estrategia.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/model/batalla/Poder.java" afterPath="$PROJECT_DIR$/src/model/batalla/Poder.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/model/naves/Nave.java" afterPath="$PROJECT_DIR$/src/model/naves/Nave.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/model/naves/NaveBatalla.java" afterPath="$PROJECT_DIR$/src/model/naves/NaveBatalla.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/model/naves/NaveColonizadora.java" afterPath="$PROJECT_DIR$/src/model/naves/NaveColonizadora.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/model/naves/NaveDestructora.java" afterPath="$PROJECT_DIR$/src/model/naves/NaveDestructora.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/model/planeta/Flota.java" afterPath="$PROJECT_DIR$/src/model/planeta/Flota.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/model/planeta/Planeta.java" afterPath="$PROJECT_DIR$/src/model/planeta/Planeta.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/model/planeta/TipoPlaneta.java" afterPath="$PROJECT_DIR$/src/model/planeta/TipoPlaneta.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/model/planeta/Torreta.java" afterPath="$PROJECT_DIR$/src/model/planeta/Torreta.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/observer/IObservador.java" afterPath="$PROJECT_DIR$/src/observer/IObservador.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/observer/Observado.java" afterPath="$PROJECT_DIR$/src/observer/Observado.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/principal/Programa.java" afterPath="$PROJECT_DIR$/src/principal/Programa.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/vista/VistaAccion.java" afterPath="$PROJECT_DIR$/src/vista/VistaAccion.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/vista/VistaError.java" afterPath="$PROJECT_DIR$/src/vista/VistaError.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/vista/VistaFin.java" afterPath="$PROJECT_DIR$/src/vista/VistaFin.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/vista/VistaInicio.java" afterPath="$PROJECT_DIR$/src/vista/VistaInicio.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/vista/VistaJuego.java" afterPath="$PROJECT_DIR$/src/vista/VistaJuego.java" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="C:\Users\nicol\IdeaProjects\OOP_TP_Guerra_De_Mundos\.idea\shelf/" />
@@ -52,16 +25,6 @@
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="85">
               <caret line="5" column="0" lean-forward="false" selection-start-line="5" selection-start-column="0" selection-end-line="5" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name=".gitignore" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/.gitignore">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="187">
-              <caret line="11" column="58" lean-forward="false" selection-start-line="11" selection-start-column="58" selection-end-line="11" selection-end-column="58" />
               <folding />
             </state>
           </provider>
@@ -106,20 +69,10 @@
       <file leaf-file-name="Universo.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/model/Universo.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="544">
+            <state relative-caret-position="337">
               <caret line="45" column="0" lean-forward="false" selection-start-line="45" selection-start-column="0" selection-end-line="45" selection-end-column="0" />
               <folding>
-                <element signature="imports" expanded="false" />
-                <element signature="e#267#268#0" expanded="false" />
-                <element signature="e#317#318#0" expanded="false" />
-                <element signature="e#354#355#0" expanded="false" />
-                <element signature="e#390#391#0" expanded="false" />
-                <element signature="e#667#668#0" expanded="false" />
-                <element signature="e#707#708#0" expanded="false" />
-                <element signature="e#764#765#0" expanded="false" />
-                <element signature="e#806#807#0" expanded="false" />
-                <element signature="e#848#849#0" expanded="false" />
-                <element signature="e#879#880#0" expanded="false" />
+                <element signature="e#954#955#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -128,23 +81,21 @@
       <file leaf-file-name="Jugador.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/model/Jugador.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="476">
+            <state relative-caret-position="337">
               <caret line="41" column="4" lean-forward="false" selection-start-line="41" selection-start-column="4" selection-end-line="41" selection-end-column="4" />
               <folding>
-                <element signature="imports" expanded="false" />
-                <element signature="e#361#362#0" expanded="false" />
-                <element signature="e#392#393#0" expanded="false" />
-                <element signature="e#663#664#0" expanded="false" />
-                <element signature="e#700#701#0" expanded="false" />
-                <element signature="e#740#741#0" expanded="false" />
-                <element signature="e#778#779#0" expanded="false" />
-                <element signature="e#811#812#0" expanded="false" />
-                <element signature="e#840#841#0" expanded="false" />
-                <element signature="e#958#959#0" expanded="false" />
-                <element signature="e#995#996#0" expanded="false" />
-                <element signature="e#1027#1028#0" expanded="false" />
-                <element signature="e#1058#1059#0" expanded="false" />
+                <element signature="e#882#883#0" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="VistaError.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/vista/VistaError.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="119">
+              <caret line="7" column="13" lean-forward="false" selection-start-line="7" selection-start-column="13" selection-end-line="7" selection-end-column="13" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -152,8 +103,8 @@
       <file leaf-file-name="VistaAccion.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/vista/VistaAccion.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1054">
-              <caret line="70" column="126" lean-forward="false" selection-start-line="70" selection-start-column="126" selection-end-line="70" selection-end-column="126" />
+            <state relative-caret-position="94">
+              <caret line="213" column="28" lean-forward="true" selection-start-line="213" selection-start-column="28" selection-end-line="213" selection-end-column="28" />
               <folding />
             </state>
           </provider>
@@ -213,6 +164,11 @@
     </replaceStrings>
   </component>
   <component name="Git.Settings">
+    <option name="PREVIOUS_COMMIT_AUTHORS">
+      <list>
+        <option value="nicol &lt;nicol@nicolas-pc&gt;" />
+      </list>
+    </option>
     <option name="UPDATE_CHANGES_POLICY" value="SHELVE" />
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
     <option name="RECENT_BRANCH_BY_REPOSITORY">
@@ -749,7 +705,14 @@
       <option name="project" value="LOCAL" />
       <updated>1495422925901</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="*Todas las opciones de produccion funcionan&#10;*Se muestran los recuros del jugador, sus naves y torretas.&#10;*La poblacion aumenta por cada turno de acuerdo a la capacidad&#10;de produccion del planeta.&#10;*Se puede pasar de turno al finalizar las acciones de produccion.&#10;*Se agrego ventana de fin de juego cuando queda un solo jugador.&#10;&#10;Falta:&#10;*Que los 3 botones de ataque sean funcionales.&#10;*Conquistar planetas y nada mas.">
+      <created>1499577663573</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1499577663573</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
@@ -825,7 +788,8 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="*Agregadas todas las entidades.&#10;*Armado el modelo de batalla." />
     <MESSAGE value="* Agregado Observer&#10;* Agregado ElementoDeBatalla y su construccion&#10;&#10;Falta:&#10;* Terminar mecanismo de batalla" />
-    <option name="LAST_COMMIT_MESSAGE" value="* Agregado Observer&#10;* Agregado ElementoDeBatalla y su construccion&#10;&#10;Falta:&#10;* Terminar mecanismo de batalla" />
+    <MESSAGE value="*Todas las opciones de produccion funcionan&#10;*Se muestran los recuros del jugador, sus naves y torretas.&#10;*La poblacion aumenta por cada turno de acuerdo a la capacidad&#10;de produccion del planeta.&#10;*Se puede pasar de turno al finalizar las acciones de produccion.&#10;*Se agrego ventana de fin de juego cuando queda un solo jugador.&#10;&#10;Falta:&#10;*Que los 3 botones de ataque sean funcionales.&#10;*Conquistar planetas y nada mas." />
+    <option name="LAST_COMMIT_MESSAGE" value="*Todas las opciones de produccion funcionan&#10;*Se muestran los recuros del jugador, sus naves y torretas.&#10;*La poblacion aumenta por cada turno de acuerdo a la capacidad&#10;de produccion del planeta.&#10;*Se puede pasar de turno al finalizar las acciones de produccion.&#10;*Se agrego ventana de fin de juego cuando queda un solo jugador.&#10;&#10;Falta:&#10;*Que los 3 botones de ataque sean funcionales.&#10;*Conquistar planetas y nada mas." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -842,7 +806,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/java/model/Jugador.java" />
     <entry file="file://$PROJECT_DIR$/src/java/model/naves/Nave.java" />
     <entry file="file://$PROJECT_DIR$/src/java/model/naves/NaveColonizadora.java" />
     <entry file="file://$PROJECT_DIR$/src/java/model/naves/NaveBatalla.java" />
@@ -925,26 +888,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/model/Universo.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="544">
-          <caret line="45" column="0" lean-forward="false" selection-start-line="45" selection-start-column="0" selection-end-line="45" selection-end-column="0" />
-          <folding>
-            <element signature="imports" expanded="false" />
-            <element signature="e#267#268#0" expanded="false" />
-            <element signature="e#317#318#0" expanded="false" />
-            <element signature="e#354#355#0" expanded="false" />
-            <element signature="e#390#391#0" expanded="false" />
-            <element signature="e#667#668#0" expanded="false" />
-            <element signature="e#707#708#0" expanded="false" />
-            <element signature="e#764#765#0" expanded="false" />
-            <element signature="e#806#807#0" expanded="false" />
-            <element signature="e#848#849#0" expanded="false" />
-            <element signature="e#879#880#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/controller/TurnoController.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="136">
@@ -955,28 +898,6 @@
             <element signature="e#462#463#0" expanded="false" />
             <element signature="e#516#517#0" expanded="false" />
             <element signature="e#565#566#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/model/Jugador.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="476">
-          <caret line="41" column="4" lean-forward="false" selection-start-line="41" selection-start-column="4" selection-end-line="41" selection-end-column="4" />
-          <folding>
-            <element signature="imports" expanded="false" />
-            <element signature="e#361#362#0" expanded="false" />
-            <element signature="e#392#393#0" expanded="false" />
-            <element signature="e#663#664#0" expanded="false" />
-            <element signature="e#700#701#0" expanded="false" />
-            <element signature="e#740#741#0" expanded="false" />
-            <element signature="e#778#779#0" expanded="false" />
-            <element signature="e#811#812#0" expanded="false" />
-            <element signature="e#840#841#0" expanded="false" />
-            <element signature="e#958#959#0" expanded="false" />
-            <element signature="e#995#996#0" expanded="false" />
-            <element signature="e#1027#1028#0" expanded="false" />
-            <element signature="e#1058#1059#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -1017,10 +938,38 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/model/Universo.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="337">
+          <caret line="45" column="0" lean-forward="false" selection-start-line="45" selection-start-column="0" selection-end-line="45" selection-end-column="0" />
+          <folding>
+            <element signature="e#954#955#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/model/Jugador.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="337">
+          <caret line="41" column="4" lean-forward="false" selection-start-line="41" selection-start-column="4" selection-end-line="41" selection-end-column="4" />
+          <folding>
+            <element signature="e#882#883#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/vista/VistaError.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="119">
+          <caret line="7" column="13" lean-forward="false" selection-start-line="7" selection-start-column="13" selection-end-line="7" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/vista/VistaAccion.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1054">
-          <caret line="70" column="126" lean-forward="false" selection-start-line="70" selection-start-column="126" selection-end-line="70" selection-end-column="126" />
+        <state relative-caret-position="94">
+          <caret line="213" column="28" lean-forward="true" selection-start-line="213" selection-start-column="28" selection-end-line="213" selection-end-column="28" />
           <folding />
         </state>
       </provider>

@@ -211,6 +211,7 @@ public class VistaAccion extends JFrame{
 
                         if(Universo.getInstance().getJugadores().get(jugadorActivo).getRecursos() >= 3){
                             Universo.getInstance().getJugadores().get(jugadorActivo).getPlanetas().get(Integer.parseInt(numero.getText())-1).aumentarCapacidadDeProduccion();
+                            Universo.getInstance().getJugadores().get(jugadorActivo).aumentarRecursos(-3);//Le resto los recuros gastados.
                             System.out.println("Cap. prod.: "+Universo.getInstance().getJugadores().get(jugadorActivo).getPlanetas().get(Integer.parseInt(numero.getText())-1).getCapacidadDeProduccion());
                             pasarTurno(ventana);
                         }else{
