@@ -23,7 +23,7 @@ public class Planeta extends ElementoDeJuego implements Dañable, IObservador<El
     private int capacidadDeProduccion = 1;
     private Jugador propietario;
     private TipoPlaneta tipoPlaneta;
-    private List<Nave> naves = new ArrayList<>(); //naves de batalla.
+    private List<Nave> navesBatalla = new ArrayList<>(); //naves de batalla.
     private List<Nave> flotas = new ArrayList<>();//naves destructoras.
     //private List<Flota> flotas = new ArrayList<>();//naves destructoras.
     private List<Nave> navesColonizadoras = new ArrayList<Nave>();//naves colonizadoras.
@@ -62,13 +62,13 @@ public class Planeta extends ElementoDeJuego implements Dañable, IObservador<El
     }
 
     public List<Nave> getNaves() {
-        return naves;
+        return navesBatalla;
     }
 
     public void addNave(int cantidad) {
         for(int i = cantidad; i > 0; i--){
             Nave nuevo = new NaveBatalla();
-            naves.add(nuevo);
+            navesBatalla.add(nuevo);
         }
     }
 
@@ -122,7 +122,7 @@ public class Planeta extends ElementoDeJuego implements Dañable, IObservador<El
 
     private int getDefensaBatalla() {
         int defensaBatalla = 0;
-        for (Nave nave : naves) {
+        for (Nave nave : navesBatalla) {
             if (nave instanceof NaveBatalla) {
                 defensaBatalla += nave.getPoder();
             }
@@ -144,7 +144,7 @@ public class Planeta extends ElementoDeJuego implements Dañable, IObservador<El
         if(elemento instanceof Torreta) {
             torretas.add((Torreta) elemento);
         }else if (elemento instanceof Nave) {
-            naves.add((Nave) elemento);
+            navesBatalla.add((Nave) elemento);
         }
     }
 
@@ -170,5 +170,43 @@ public class Planeta extends ElementoDeJuego implements Dañable, IObservador<El
             if (this.navesColonizadoras.size() > 0)
                 this.navesColonizadoras.remove(0);
                     }
+    }
+
+    //Para restar las naves de batalla:
+    public void removerNavesBatalla(int cantidad){
+        for(int i=cantidad; i > 0; i--){
+            if(this.navesBatalla.size() > 0)
+                this.navesBatalla.remove(0);
+        }
+    }
+
+    //Para restar poblacion:
+    public void restarPoblacion(int cantidad){
+        if(cantidad > this.poblacion)
+            this.poblacion = 0;
+        else
+            this.poblacion -= cantidad;
+    }
+
+    //Para restar torretas
+    public void restarTorretas(int cantidad){
+        for(int i=cantidad; i > 0; i--)
+            if(torretas.size() > 0)
+                torretas.remove(0);
+    }
+
+    //Para remover naves destructoras:
+    public void removerDestructoras(int cantidad){
+        for(int i=cantidad; i > 0; i--)
+            if(flotas.size() > 0)
+                flotas.remove(0);
+    }
+
+    public void reducirPoblacion(int cantidad){
+        this.poblacion -= cantidad;
+    }
+
+    public void setCapacidadDeProduccion(int n){
+        this.capacidadDeProduccion = n;
     }
 }

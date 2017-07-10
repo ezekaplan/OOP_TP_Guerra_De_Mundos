@@ -110,13 +110,15 @@ public class VistaJuego extends JFrame implements IObservador{
 
             atacarNaves.addActionListener(new java.awt.event.ActionListener() {
                 public void actionPerformed(ActionEvent evt) {
-
+                    VistaAccion accion = new VistaAccion( VistaJuego.this, 5);
+                    accion.setVisible(true);
                 }
             });
 
             atacarPlanetas.addActionListener(new java.awt.event.ActionListener() {
                 public void actionPerformed(ActionEvent evt) {
-
+                    VistaAccion accion = new VistaAccion( VistaJuego.this, 6);
+                    accion.setVisible(true);
                 }
             });
 

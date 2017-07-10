@@ -5,6 +5,7 @@ import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 import java.awt.*;
 import java.awt.event.ActionEvent;
+import java.sql.SQLIntegrityConstraintViolationException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -333,9 +334,239 @@ public class VistaAccion extends JFrame{
                 break;
             //Para atacar naves:
             case 5:
+                this.setSize(800, 300);
+                JLabel tituloBatalla = new JLabel("<html><body>Ataque a naves de batalla<br>Seleccione el jugador:</body></html>");
+                tituloBatalla.setBounds(10, 10, 150, 50);
+                JComboBox listaJugadoresBatalla = new JComboBox();
+                for(Jugador i : Universo.getInstance().getJugadores()){
+                    if(i.getNombre() != Universo.getInstance().getJugadores().get(Universo.getInstance().getJugadorActivo()).getNombre())
+                        listaJugadoresBatalla.addItem(i.getNombre());
+                }
+                listaJugadoresBatalla.setBounds(10, 60, 150, 20);
+                listaJugadoresBatalla.setSelectedIndex(0);
+                this.add(tituloBatalla);
+                this.add(listaJugadoresBatalla);
+                JLabel infoBatalla = new JLabel("Detalles jugador seleccionado:");
+                infoBatalla.setBounds(300, 10, 200, 20);
+                this.add(infoBatalla);
+                JTextArea iDetalladaBatalla = new JTextArea();
+                iDetalladaBatalla.setText("");
+                iDetalladaBatalla.setEditable(false);
+                iDetalladaBatalla.setBounds(300, 40, 350, 180);
+                iDetalladaBatalla.setLineWrap(true);
+                iDetalladaBatalla.setWrapStyleWord(true);
+                this.add(iDetalladaBatalla);
+                listaJugadoresBatalla.addActionListener(new java.awt.event.ActionListener() {//Listener del comboBox.
+                    public void actionPerformed(ActionEvent evt) {
+                        //Obtengo la lista de planetas del jugador seleccionado:
+                        iDetalladaBatalla.setText("");
+                        Jugador seleccionado = new Jugador(null);
+                        String nombreSeleccionado = listaJugadoresBatalla.getSelectedItem().toString();
+                        for(Jugador i : Universo.getInstance().getJugadores())
+                            if(i.getNombre().equals(nombreSeleccionado))
+                                seleccionado = i;
+                        //listaPlanetasDeOtroJugador = Universo.getInstance().getJugadores().get(listaJugadores.getSelectedIndex()).getPlanetas();
+                        listaPlanetasDeOtroJugador = seleccionado.getPlanetas();
+                        int j = 1;
+                        for(Planeta i : listaPlanetasDeOtroJugador){
+                            iDetalladaBatalla.append("Planeta: " + j + " Poblacion: " + i.getPoblacion() + " Naves de batalla: " + i.getNaves().size() + "\n");
+                            j += 1;
+                        }
+                        VistaAccion.this.repaint();
+                    }
+                });
+                JLabel atacarBatalla = new JLabel("Ingrese el planeta a atacar del jugador:");
+                atacarBatalla.setBounds(10, 90, 250, 20);
+                this.add(atacarBatalla);
+                JTextField ingresadoPlaneta5 = new JTextField();
+                ingresadoPlaneta5.setBounds(10, 120, 150, 20);
+                this.add(ingresadoPlaneta5);
+                JLabel atacarDesde5 = new JLabel("Ingrese el planeta desde que ataca:");
+                atacarDesde5.setBounds(10, 150, 250, 20);
+                this.add(atacarDesde5);
+                JTextField ingresadoDesde5 = new JTextField();
+                ingresadoDesde5.setBounds(10, 180, 150, 20);
+                this.add(ingresadoDesde5);
+                JButton aceptar5 = new JButton();
+                aceptar5.setText("Aceptar y pasar turno");
+                aceptar5.setBounds(300, 240, 200, 20);
+                this.add(aceptar5);
+                aceptar5.addActionListener(new java.awt.event.ActionListener() {//Listener del comboBox.
+                    public void actionPerformed(ActionEvent evt) {
+                        //Se desencadena la lucha.
+                        //Verifico que el otro planeta tenga naves de batalla.
+                        Jugador jugadorSeleccionado = Universo.getInstance().getJugadores().get(listaJugadoresBatalla.getSelectedIndex());
+                        Planeta planetaSeleccionado = Universo.getInstance().getJugadores().get(listaJugadoresBatalla.getSelectedIndex()).getPlanetas().get(Integer.parseInt(ingresadoPlaneta5.getText())-1);
+                        int navesEnviadas = Universo.getInstance().getJugadores().get(jugadorActivo).getPlanetas().get(Integer.parseInt(ingresadoDesde5.getText())-1).getNaves().size();
+                        int navesDefensoras = planetaSeleccionado.getNaves().size();
+                        int navesSobrevivientes = 0, navesARestar = 0;
+                        if(planetaSeleccionado.getNaves().size() > 0){
+                            if(navesEnviadas > navesDefensoras){
+                                navesSobrevivientes = navesEnviadas - navesDefensoras;
+                                navesARestar = navesDefensoras;
+                            }else if(navesEnviadas == navesDefensoras){
+                                navesSobrevivientes = 0;
+                                navesARestar = navesEnviadas;
+                            }else if(navesEnviadas < navesDefensoras){
+                                navesARestar = navesEnviadas;
+                                navesSobrevivientes = 0;
+                            }
+                            planetaSeleccionado.removerNavesBatalla(navesARestar);
+                            Universo.getInstance().getJugadores().get(jugadorActivo).getPlanetas().get(Integer.parseInt(ingresadoDesde5.getText())-1).removerNavesBatalla(navesARestar);
+                        }else if(planetaSeleccionado.getPoblacion() == 0){
+                            //Se le resta al atacado un punto de poblacion por nave enviada.
+                            Universo.getInstance().getJugadores().get(listaJugadoresBatalla.getSelectedIndex()).getPlanetas().get(Integer.parseInt(ingresadoPlaneta5.getText())-1).restarPoblacion(navesARestar);
+                            Universo.getInstance().getJugadores().get(jugadorActivo).getPlanetas().get(Integer.parseInt(ingresadoDesde5.getText())-1).removerNavesBatalla(navesARestar);
+                        }
+                        pasarTurno(ventana);
+                    }
+                });
                 break;
             //Para atacar planetas:
             case 6:
+                this.setSize(800, 300);
+                JLabel tituloDestructor = new JLabel("<html><body>Ataque a planetas<br>Seleccione el jugador:</body></html>");
+                tituloDestructor.setBounds(10, 10, 150, 50);
+                JComboBox listaJugadoresDestructor = new JComboBox();
+                for(Jugador i : Universo.getInstance().getJugadores()){
+                    if(i.getNombre() != Universo.getInstance().getJugadores().get(Universo.getInstance().getJugadorActivo()).getNombre())
+                        listaJugadoresDestructor.addItem(i.getNombre());
+                }
+                listaJugadoresDestructor.setBounds(10, 60, 150, 20);
+                listaJugadoresDestructor.setSelectedIndex(0);
+                this.add(tituloDestructor);
+                this.add(listaJugadoresDestructor);
+                JLabel infoDestructor = new JLabel("Detalles jugador seleccionado:");
+                infoDestructor.setBounds(300, 10, 200, 20);
+                this.add(infoDestructor);
+                JTextArea iDetalladaDestructor = new JTextArea();
+                iDetalladaDestructor.setText("");
+                iDetalladaDestructor.setEditable(false);
+                iDetalladaDestructor.setBounds(300, 40, 350, 180);
+                iDetalladaDestructor.setLineWrap(true);
+                iDetalladaDestructor.setWrapStyleWord(true);
+                this.add(iDetalladaDestructor);
+                listaJugadoresDestructor.addActionListener(new java.awt.event.ActionListener() {//Listener del comboBox.
+                    public void actionPerformed(ActionEvent evt) {
+                        //Obtengo la lista de planetas del jugador seleccionado:
+                        iDetalladaDestructor.setText("");
+                        Jugador seleccionado = new Jugador(null);
+                        String nombreSeleccionado = listaJugadoresDestructor.getSelectedItem().toString();
+                        for(Jugador i : Universo.getInstance().getJugadores())
+                            if(i.getNombre().equals(nombreSeleccionado))
+                                seleccionado = i;
+                        //listaPlanetasDeOtroJugador = Universo.getInstance().getJugadores().get(listaJugadores.getSelectedIndex()).getPlanetas();
+                        listaPlanetasDeOtroJugador = seleccionado.getPlanetas();
+                        int j = 1;
+                        for(Planeta i : listaPlanetasDeOtroJugador){
+                            iDetalladaDestructor.append("Planeta: " + j + " Poblacion: " + i.getPoblacion() + " Naves de batalla: " + i.getNaves().size() + "\n");
+                            j += 1;
+                        }
+                        VistaAccion.this.repaint();
+                    }
+                });
+                JLabel atacarDestructor = new JLabel("Ingrese el planeta a atacar del jugador:");
+                atacarDestructor.setBounds(10, 90, 250, 20);
+                this.add(atacarDestructor);
+                JTextField ingresadoPlaneta6 = new JTextField();
+                ingresadoPlaneta6.setBounds(10, 120, 150, 20);
+                this.add(ingresadoPlaneta6);
+                JLabel atacarDesde6 = new JLabel("Ingrese el planeta desde que ataca:");
+                atacarDesde6.setBounds(10, 150, 250, 20);
+                this.add(atacarDesde6);
+                JTextField ingresadoDesde6 = new JTextField();
+                ingresadoDesde6.setBounds(10, 180, 150, 20);
+                this.add(ingresadoDesde6);
+                JButton aceptar6 = new JButton();
+                aceptar6.setText("Aceptar y pasar turno");
+                aceptar6.setBounds(300, 240, 200, 20);
+                this.add(aceptar6);
+                aceptar6.addActionListener(new java.awt.event.ActionListener() {//Listener del comboBox.
+                    public void actionPerformed(ActionEvent evt) {
+                        //Se desencadena la lucha.
+                        //Verifico que el otro planeta tenga naves de batalla.
+                        Jugador jugadorSeleccionado = Universo.getInstance().getJugadores().get(listaJugadoresDestructor.getSelectedIndex());
+                        Planeta planetaSeleccionado = Universo.getInstance().getJugadores().get(listaJugadoresDestructor.getSelectedIndex()).getPlanetas().get(Integer.parseInt(ingresadoPlaneta6.getText())-1);
+                        int navesEnviadas = Universo.getInstance().getJugadores().get(jugadorActivo).getPlanetas().get(Integer.parseInt(ingresadoDesde6.getText())-1).getFlotas().size();
+                        int torretasDefensoras = planetaSeleccionado.getTorretas().size();
+                        int navesSobrevivientes = 0, navesARestar = 0;
+
+                        if(navesEnviadas > 0 && (navesEnviadas / 2) > torretasDefensoras && torretasDefensoras > 0){
+                            navesARestar = navesEnviadas / 2;
+                            Universo.getInstance().getJugadores().get(listaJugadoresDestructor.getSelectedIndex()).getPlanetas().get(Integer.parseInt(ingresadoPlaneta6.getText())-1).restarTorretas(navesARestar);
+                            navesARestar = torretasDefensoras * 2;
+                            Universo.getInstance().getJugadores().get(jugadorActivo).getPlanetas().get(Integer.parseInt(ingresadoDesde6.getText())-1).removerDestructoras(navesARestar);
+                            navesEnviadas = navesEnviadas - (torretasDefensoras * 2);
+                        }else if((navesEnviadas / 2) == torretasDefensoras){
+                            navesARestar = navesEnviadas / 2;
+                            Universo.getInstance().getJugadores().get(listaJugadoresDestructor.getSelectedIndex()).getPlanetas().get(Integer.parseInt(ingresadoPlaneta6.getText())-1).restarTorretas(navesARestar);
+                            Universo.getInstance().getJugadores().get(jugadorActivo).getPlanetas().get(Integer.parseInt(ingresadoPlaneta6.getText())-1).removerDestructoras(navesARestar);
+                            navesEnviadas = 0;
+                        }else if((navesEnviadas / 2) < torretasDefensoras){
+                            Universo.getInstance().getJugadores().get(listaJugadoresDestructor.getSelectedIndex()).getPlanetas().get(Integer.parseInt(ingresadoPlaneta6.getText())-1).restarTorretas(torretasDefensoras);
+                            Universo.getInstance().getJugadores().get(jugadorActivo).getPlanetas().get(Integer.parseInt(ingresadoDesde6.getText())-1).removerDestructoras((torretasDefensoras*2));
+                            navesEnviadas = 0;
+                        }
+
+                        int destructorasDefensoras = planetaSeleccionado.getFlotas().size();
+                        if(navesEnviadas > 0 && navesEnviadas > destructorasDefensoras && destructorasDefensoras > 0){
+                            Universo.getInstance().getJugadores().get(listaJugadoresDestructor.getSelectedIndex()).getPlanetas().get(Integer.parseInt(ingresadoPlaneta6.getText())-1).removerDestructoras(destructorasDefensoras);
+                            Universo.getInstance().getJugadores().get(jugadorActivo).getPlanetas().get(Integer.parseInt(ingresadoDesde6.getText())-1).removerDestructoras(destructorasDefensoras);
+                            navesEnviadas = navesEnviadas - destructorasDefensoras;
+                        }else if(navesEnviadas == destructorasDefensoras){
+                            Universo.getInstance().getJugadores().get(listaJugadoresDestructor.getSelectedIndex()).getPlanetas().get(Integer.parseInt(ingresadoPlaneta6.getText())-1).removerDestructoras(destructorasDefensoras);
+                            Universo.getInstance().getJugadores().get(jugadorActivo).getPlanetas().get(Integer.parseInt(ingresadoDesde6.getText())-1).removerDestructoras(destructorasDefensoras);
+                            navesEnviadas = 0;
+                        }else if(navesEnviadas < destructorasDefensoras){
+                            Universo.getInstance().getJugadores().get(listaJugadoresDestructor.getSelectedIndex()).getPlanetas().get(Integer.parseInt(ingresadoPlaneta6.getText())-1).removerDestructoras(navesEnviadas);
+                            Universo.getInstance().getJugadores().get(jugadorActivo).getPlanetas().get(Integer.parseInt(ingresadoDesde6.getText())-1).removerDestructoras(navesEnviadas);
+                            navesEnviadas = 0;
+                        }
+
+                        int colonizadorasDefensoras = planetaSeleccionado.getNavesColonizadoras().size();
+                        if(navesEnviadas > 0 && navesEnviadas > colonizadorasDefensoras && colonizadorasDefensoras > 0){
+                            Universo.getInstance().getJugadores().get(listaJugadoresDestructor.getSelectedIndex()).getPlanetas().get(Integer.parseInt(ingresadoPlaneta6.getText())-1).removerNavesColonizadoras(colonizadorasDefensoras);
+                            Universo.getInstance().getJugadores().get(jugadorActivo).getPlanetas().get(Integer.parseInt(ingresadoDesde6.getText())-1).removerDestructoras(colonizadorasDefensoras/2);
+                            navesEnviadas = navesEnviadas - (colonizadorasDefensoras/2);
+                        }else if(navesEnviadas == colonizadorasDefensoras){
+                            Universo.getInstance().getJugadores().get(listaJugadoresDestructor.getSelectedIndex()).getPlanetas().get(Integer.parseInt(ingresadoPlaneta6.getText())-1).removerNavesColonizadoras(colonizadorasDefensoras);
+                            Universo.getInstance().getJugadores().get(jugadorActivo).getPlanetas().get(Integer.parseInt(ingresadoDesde6.getText())-1).removerDestructoras(colonizadorasDefensoras/2);
+                            navesEnviadas = navesEnviadas / 2;
+                        }else if(navesEnviadas < colonizadorasDefensoras){
+                            navesARestar = colonizadorasDefensoras - (navesEnviadas * 2);
+                            Universo.getInstance().getJugadores().get(listaJugadoresDestructor.getSelectedIndex()).getPlanetas().get(Integer.parseInt(ingresadoPlaneta6.getText())-1).removerNavesColonizadoras(navesARestar);
+                            navesARestar = navesEnviadas - (colonizadorasDefensoras / 2);
+                            Universo.getInstance().getJugadores().get(jugadorActivo).getPlanetas().get(Integer.parseInt(ingresadoDesde6.getText())-1).removerDestructoras(navesARestar);
+                            navesEnviadas = navesEnviadas - (colonizadorasDefensoras / 2);
+                        }
+
+                        int pobladoresDefensor = planetaSeleccionado.getPoblacion();
+                        if(navesEnviadas > 0 && navesEnviadas > pobladoresDefensor && pobladoresDefensor > 0){
+                            Universo.getInstance().getJugadores().get(listaJugadoresDestructor.getSelectedIndex()).getPlanetas().get(Integer.parseInt(ingresadoPlaneta6.getText())-1).setPoblacion(0);
+                            Universo.getInstance().getJugadores().get(listaJugadoresDestructor.getSelectedIndex()).getPlanetas().get(Integer.parseInt(ingresadoPlaneta6.getText())-1).setCapacidadDeProduccion(0);
+                            Universo.getInstance().getJugadores().get(jugadorActivo).getPlanetas().get(Integer.parseInt(ingresadoDesde6.getText())-1).removerDestructoras(pobladoresDefensor/5);
+                            navesEnviadas = navesEnviadas - (pobladoresDefensor/5);
+                        }else if(navesEnviadas == pobladoresDefensor){
+                            Universo.getInstance().getJugadores().get(listaJugadoresDestructor.getSelectedIndex()).getPlanetas().get(Integer.parseInt(ingresadoPlaneta6.getText())-1).setPoblacion(0);
+                            Universo.getInstance().getJugadores().get(listaJugadoresDestructor.getSelectedIndex()).getPlanetas().get(Integer.parseInt(ingresadoPlaneta6.getText())-1).setCapacidadDeProduccion(0);
+                            Universo.getInstance().getJugadores().get(jugadorActivo).getPlanetas().get(Integer.parseInt(ingresadoDesde6.getText())-1).removerDestructoras(pobladoresDefensor/5);
+                            navesEnviadas = navesEnviadas - (pobladoresDefensor/5);
+                        }else if(navesEnviadas < pobladoresDefensor){
+                            if(pobladoresDefensor - (navesEnviadas * 5) > 0)
+                                Universo.getInstance().getJugadores().get(listaJugadoresDestructor.getSelectedIndex()).getPlanetas().get(Integer.parseInt(ingresadoPlaneta6.getText())-1).reducirPoblacion(navesEnviadas*5);
+                            else if(pobladoresDefensor - (navesEnviadas*5) <= 0) {
+                                Universo.getInstance().getJugadores().get(listaJugadoresDestructor.getSelectedIndex()).getPlanetas().get(Integer.parseInt(ingresadoPlaneta6.getText())-1).setPoblacion(0);
+                                Universo.getInstance().getJugadores().get(listaJugadoresDestructor.getSelectedIndex()).getPlanetas().get(Integer.parseInt(ingresadoPlaneta6.getText())-1).setCapacidadDeProduccion(0);
+                            }
+                            if(navesEnviadas - (pobladoresDefensor/5) <= 0)
+                                Universo.getInstance().getJugadores().get(jugadorActivo).getPlanetas().get(Integer.parseInt(ingresadoDesde6.getText())-1).removerDestructoras(navesEnviadas);
+                            else
+                                Universo.getInstance().getJugadores().get(jugadorActivo).getPlanetas().get(Integer.parseInt(ingresadoDesde6.getText())-1).removerDestructoras(pobladoresDefensor/5);
+                        }
+
+                        pasarTurno(ventana);
+                    }
+                });
                 break;
             default:
                 System.out.println("Formulario creado.");
