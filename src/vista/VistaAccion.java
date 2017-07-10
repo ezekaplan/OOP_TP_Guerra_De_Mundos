@@ -5,8 +5,12 @@ import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 import java.awt.*;
 import java.awt.event.ActionEvent;
+import java.util.ArrayList;
+import java.util.List;
 
+import model.Jugador;
 import model.Universo;
+import model.planeta.Planeta;
 import sun.rmi.server.InactiveGroupException;
 import vista.*;
 
@@ -16,6 +20,7 @@ import vista.*;
 public class VistaAccion extends JFrame{
 
     private int jugadorActivo = Universo.getInstance().getJugadorActivo();
+    private List<Planeta> listaPlanetasDeOtroJugador = new ArrayList<Planeta>();
 
     VistaAccion(VistaJuego ventana, int n){
         this.setTitle("Age of Guerra del Espacio");
@@ -235,6 +240,96 @@ public class VistaAccion extends JFrame{
                 break;
             //Para colonizar:
             case 4:
+                this.setSize(800, 300);
+                JLabel tituloColonizadora = new JLabel("<html><body>Ataque colonizador<br>Seleccione el jugador:</body></html>");
+                tituloColonizadora.setBounds(10, 10, 150, 50);
+                JComboBox listaJugadores = new JComboBox();
+                for(Jugador i : Universo.getInstance().getJugadores()){
+                    if(i.getNombre() != Universo.getInstance().getJugadores().get(Universo.getInstance().getJugadorActivo()).getNombre())
+                        listaJugadores.addItem(i.getNombre());
+                }
+                listaJugadores.setBounds(10, 60, 150, 20);
+                listaJugadores.setSelectedIndex(0);
+                this.add(tituloColonizadora);
+                this.add(listaJugadores);
+                JLabel info = new JLabel("Detalles jugador seleccionado:");
+                info.setBounds(300, 10, 200, 20);
+                this.add(info);
+                JTextArea informacionDetallada = new JTextArea();
+                informacionDetallada.setText("");
+                informacionDetallada.setEditable(false);
+                informacionDetallada.setBounds(300, 40, 350, 180);
+                informacionDetallada.setLineWrap(true);
+                informacionDetallada.setWrapStyleWord(true);
+                this.add(informacionDetallada);
+                listaJugadores.addActionListener(new java.awt.event.ActionListener() {//Listener del comboBox.
+                    public void actionPerformed(ActionEvent evt) {
+                        //Obtengo la lista de planetas del jugador seleccionado:
+                        informacionDetallada.setText("");
+                        Jugador seleccionado = new Jugador(null);
+                        String nombreSeleccionado = listaJugadores.getSelectedItem().toString();
+                        for(Jugador i : Universo.getInstance().getJugadores())
+                            if(i.getNombre().equals(nombreSeleccionado))
+                                seleccionado = i;
+                        //listaPlanetasDeOtroJugador = Universo.getInstance().getJugadores().get(listaJugadores.getSelectedIndex()).getPlanetas();
+                        listaPlanetasDeOtroJugador = seleccionado.getPlanetas();
+                        int j = 1;
+                        for(Planeta i : listaPlanetasDeOtroJugador){
+                            informacionDetallada.append("Planeta: " + j + " Poblacion: " + i.getPoblacion() + " Colonizadoras: " + i.getNavesColonizadoras().size() + "\n");
+                            j += 1;
+                        }
+                        VistaAccion.this.repaint();
+                    }
+                });
+                JLabel atacar = new JLabel("Ingrese el planeta a atacar del jugador:");
+                atacar.setBounds(10, 90, 250, 20);
+                this.add(atacar);
+                JTextField ingresadoPlaneta4 = new JTextField();
+                ingresadoPlaneta4.setBounds(10, 120, 150, 20);
+                this.add(ingresadoPlaneta4);
+                JLabel atacarDesde = new JLabel("Ingrese el planeta desde que ataca:");
+                atacarDesde.setBounds(10, 150, 250, 20);
+                this.add(atacarDesde);
+                JTextField ingresadoDesde4 = new JTextField();
+                ingresadoDesde4.setBounds(10, 180, 150, 20);
+                this.add(ingresadoDesde4);
+                JButton aceptar4 = new JButton();
+                aceptar4.setText("Aceptar y pasar turno");
+                aceptar4.setBounds(300, 240, 200, 20);
+                this.add(aceptar4);
+                aceptar4.addActionListener(new java.awt.event.ActionListener() {//Listener del comboBox.
+                    public void actionPerformed(ActionEvent evt) {
+                        //Se desencadena la lucha.
+                        //Verifico que el otro planeta tenga naves colonizadoras.
+                        Jugador jugadorSeleccionado = Universo.getInstance().getJugadores().get(listaJugadores.getSelectedIndex());
+                        Planeta planetaSeleccionado = Universo.getInstance().getJugadores().get(listaJugadores.getSelectedIndex()).getPlanetas().get(Integer.parseInt(ingresadoPlaneta4.getText())-1);
+                        if(planetaSeleccionado.getNavesColonizadoras().size() > 0){
+                            int navesEnviadas = Universo.getInstance().getJugadores().get(jugadorActivo).getPlanetas().get(Integer.parseInt(ingresadoDesde4.getText())-1).getNavesColonizadoras().size();
+                            int navesDefensoras = planetaSeleccionado.getNavesColonizadoras().size();
+                            int navesSobrevivientes = 0, navesARestar = 0;
+                            if(navesEnviadas > navesDefensoras){
+                                navesSobrevivientes = navesEnviadas - navesDefensoras;
+                                navesARestar = navesDefensoras;
+                            }else if(navesEnviadas == navesDefensoras){
+                                navesSobrevivientes = 0;
+                                navesARestar = navesEnviadas;
+                            }else if(navesEnviadas < navesDefensoras){
+                                navesARestar = navesEnviadas;
+                                navesSobrevivientes = 0;
+                            }
+                            planetaSeleccionado.removerNavesColonizadoras(navesARestar);
+                            Universo.getInstance().getJugadores().get(jugadorActivo).getPlanetas().get(Integer.parseInt(ingresadoDesde4.getText())-1).removerNavesColonizadoras(navesARestar);
+                        }else if(planetaSeleccionado.getPoblacion() == 0){
+                            //Se conquista el planeta
+                            Planeta conquistado;
+                            conquistado = planetaSeleccionado;
+                            jugadorSeleccionado.removerPlaneta(conquistado);
+                            conquistado.setPoblacion(2);
+                            Universo.getInstance().getJugadores().get(jugadorActivo).agregarPlaneta(conquistado);
+                        }
+                        pasarTurno(ventana);
+                    }
+                });
                 break;
             //Para atacar naves:
             case 5:
@@ -273,4 +368,5 @@ public class VistaAccion extends JFrame{
         nuevo.setVisible(true);
         VistaAccion.this.dispose();
     }
+
 }

@@ -103,7 +103,8 @@ public class VistaJuego extends JFrame implements IObservador{
 
             colonizar.addActionListener(new java.awt.event.ActionListener() {
                 public void actionPerformed(ActionEvent evt) {
-
+                    VistaAccion accion = new VistaAccion( VistaJuego.this, 4);
+                    accion.setVisible(true);
                 }
             });
 

@@ -163,4 +163,12 @@ public class Planeta extends ElementoDeJuego implements Dañable, IObservador<El
     public void aumentarPoblacion(int capacidadDeProduccionDelPlaneta){
         this.poblacion += capacidadDeProduccionDelPlaneta;
     }
+
+    //Pre condicion: la cantidad no puede superar la cantidad de naves colonizadoras que tiene el planeta.
+    public void removerNavesColonizadoras(int cantidad){
+        for(int i=cantidad; i > 0; i--){
+            if (this.navesColonizadoras.size() > 0)
+                this.navesColonizadoras.remove(0);
+                    }
+    }
 }
