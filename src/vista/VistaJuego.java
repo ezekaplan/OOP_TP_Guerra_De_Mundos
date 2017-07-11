@@ -43,8 +43,14 @@ public class VistaJuego extends JFrame implements IObservador{
 
         System.out.println(Universo.getInstance().getJugadores().get(0).getNombre());
 
+        for(Jugador i : Universo.getInstance().getJugadores()){
+            if(i.getPlanetas().size() <= 0){
+                Universo.getInstance().getJugadores().remove(i);
+            }
+        }
+
         if(Universo.getInstance().getJugadores().size() == 1){
-            VistaFin fin = new VistaFin();
+            VistaFin fin = new VistaFin(Universo.getInstance().getJugadores().get(0).getNombre());
             fin.setVisible(true);
         }
 
@@ -78,7 +84,6 @@ public class VistaJuego extends JFrame implements IObservador{
             this.add(atacarPlanetas);
             naves.addActionListener(new java.awt.event.ActionListener() {
                 public void actionPerformed(ActionEvent evt) {
-
                     VistaAccion producirNaves = new VistaAccion(VistaJuego.this, 1);
                     producirNaves.setVisible(true);
                 }
@@ -160,7 +165,6 @@ public class VistaJuego extends JFrame implements IObservador{
         //Las etiquetas:
         //do {
         Jugador jugador = new Jugador("");
-
         jugador = Universo.getInstance().getJugadores().get(jugadorActivo);
         /*if(primerTurno){
             jugador = Universo.getInstance().getJugadores().get(jugadorActivo);
