@@ -48,4 +48,13 @@ public class Jugador implements IObservador<Planeta> {
     public int getRecursos() {
         return recursos;
     }
+
+    public void removerPlaneta(Planeta removido){
+        if(planetas.size() > 0)
+            planetas.remove(removido);
+    }
+
+    public void agregarPlaneta(Planeta agregado){
+        planetas.add(agregado);
+    }
 }
