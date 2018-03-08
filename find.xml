@@ -1,7 +1,7 @@
 <application>
   <component name="FindSettings">
-    <option name="customScope" value="File '[OOP_TP_Guerra_De_Mundos] - ...\src\vista\Inicio.form'" />
-    <option name="defaultScopeName" value="File '[OOP_TP_Guerra_De_Mundos] - ...\src\vista\Inicio.form'" />
-    <option name="SEARCH_SCOPE" value="File '[OOP_TP_Guerra_De_Mundos] - ...\src\vista\Inicio.form'" />
+    <option name="customScope" value="All Places" />
+    <option name="defaultScopeName" value="All Places" />
+    <option name="SEARCH_SCOPE" value="All Places" />
   </component>
 </application>
